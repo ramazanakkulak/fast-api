@@ -32,6 +32,7 @@ pipeline {
                 sh 'chmod u+x ./kubectl'  
                 sh './kubectl apply -f fastapi-service.yaml'
                 sh './kubectl apply -f fastapi-deployment.yaml'
+            }
         }
       }
     }
