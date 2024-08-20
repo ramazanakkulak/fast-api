@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: fastapi
-        image: 192.168.1.62:5000/my-fastapi-app:v1
+        image: 192.168.1.62:5000/ramazan/my-fastapi-app:v1
         ports:
         - containerPort: 8000
