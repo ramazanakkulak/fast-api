@@ -24,19 +24,17 @@ pipeline {
                 }
             }
         }
+
         stage('Deploy k8s') {
             steps {
-                
                 withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'master', contextName: '', credentialsId: 'SECRET_TOKEN', namespace: 'default', serverUrl: 'https://192.168.10.9:6443']]) {
-                sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"'  
-                sh 'chmod u+x ./kubectl'  
-                sh './kubectl apply -f fastapi-service.yaml'
-                sh './kubectl apply -f fastapi-deployment.yaml'
+                    sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"'  
+                    sh 'chmod u+x ./kubectl'  
+                    sh './kubectl apply -f fastapi-service.yaml'
+                    sh './kubectl apply -f fastapi-deployment.yaml'
+                }
             }
         }
-      }
-    }
-  }
     }
 
     post {
