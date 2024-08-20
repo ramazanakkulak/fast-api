@@ -10,7 +10,6 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Docker imajını build et
                     sh "docker build -t ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} -f backend-service.dockerfile ."
                 }
             }
@@ -19,7 +18,6 @@ pipeline {
         stage('Tag Docker Image') {
             steps {
                 script {
-                    // Docker imajını tag'le
                     sh "docker tag ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} ${DOCKER_IMAGE_NAME}:${DOCKER_TAG}"
                 }
             }
