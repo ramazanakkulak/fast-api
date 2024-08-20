@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE_NAME = "my-fastapi-app"
         DOCKER_TAG = "v1"
+        DOCKER_REPOSITORY = "selftuts.local.com:5000/ramazan"
     }
 
     stages {
@@ -19,6 +20,7 @@ pipeline {
             steps {
                 script {
                     sh "docker tag ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} ${DOCKER_IMAGE_NAME}:${DOCKER_TAG}"
+                    sh "docker push ${DOCKER_REPOSITORY}/${DOCKER_IMAGE_NAME}:${DOCKER_TAG}"
                 }
             }
         }
@@ -26,10 +28,10 @@ pipeline {
 
     post {
         success {
-            echo 'Docker image build and tagging succeeded!'
+            echo 'Pipeline succeeded!'
         }
         failure {
-            echo 'Docker image build or tagging failed!'
+            echo 'Pipeline failed!'
         }
     }
 }
